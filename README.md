@@ -1,5 +1,3 @@
-`used as test wechat back end`
-
 ### api
 
 1. `/crawl` 
