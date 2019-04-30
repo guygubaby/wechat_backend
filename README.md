@@ -14,7 +14,7 @@
     eg
     > `/crawl?page=5&name=蔡徐坤` [crawl5Page](http://guygubaby.top:8888/crawl?page=5&name=蔡徐坤)
 
-2. `/getCxk`
+2. `/get`
 
     func
     * to get data from mongodb,
@@ -24,5 +24,5 @@
     * size default 10
     
     eg
-    > `/getCxk?page=0&size=10`  [get50Video](http://guygubaby.top:8888/getCxk?page=0&size=50)
+    > `/get?page=0&size=10`  [get50Video](http://guygubaby.top:8888/get?page=0&size=50)
     

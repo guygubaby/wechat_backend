@@ -9,8 +9,8 @@ app.config['JSON_AS_ASCII'] = False
 @app.route('/')
 def help():
     return jsonify({'help':
-                        {'/crawl':'crawl cxk videos,params: page:int and default is 5',
-                         '/getCxk':'get cxk from db (ps: params: page and size,which default value is 0 and 10)'}
+                        {'/crawl':'crawl videos,params: page:int and default is 5',
+                         '/get':'get video from db (ps: params: page and size,which default value is 0 and 10)'}
                     })
 
 
@@ -22,8 +22,8 @@ def crawl():
     return jsonify({'count':count,'ret':'ok'})
 
 
-@app.route('/getCxk',methods=['GET'])
-def cxk():
+@app.route('/get',methods=['GET'])
+def video():
     page=request.args.get('page',default=0,type=int)
     size=request.args.get('size',default=10,type=int)
     try:
