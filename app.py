@@ -19,7 +19,7 @@ def crawl():
     text = request.args.get('name',default='蔡徐坤',type=str)
     page = request.args.get('page',default=5,type=int)
     count = start_crawl(text,page)
-    return jsonify({'count':count,'ret':'ok'})
+    return jsonify({'ret':'ok, now have {} videos in the db'.format(count)})
 
 
 @app.route('/get',methods=['GET'])
@@ -28,7 +28,7 @@ def video():
     size=request.args.get('size',default=10,type=int)
     try:
         res,count = BiliBiliVideoItem.query_items(page,size)
-        return jsonify({'page':page,'size':size,'count':count,'res':res})
+        return jsonify({'page':page,'size':size,'total_count':count,'count':len(res),'res':res})
     except Exception as e:
         print(e)
         return jsonify({'error':'error happened'})
