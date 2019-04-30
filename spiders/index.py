@@ -6,7 +6,7 @@ from pymongo import MongoClient
 
 class BiliBiliSpider:
     # ua=UserAgent(use_cache_server=False, verify_ssl=False)
-    cxk_db=MongoClient(host='127.0.0.1',port=27017).my_db.cxk
+    cxk_db=MongoClient(host='service.db',port=27017).my_db.cxk
     url_template='https://search.bilibili.com/all?keyword={}&page={}'
     headers={
         # 'User-Agent':ua.random,
