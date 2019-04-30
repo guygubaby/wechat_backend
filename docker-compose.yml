@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3"
 services:
   service.app:
     build:
@@ -7,19 +7,19 @@ services:
     ports:
       - "8888:5000"
     networks:
-      - cxk_net
+      - bilibili_net
 
   service.db:
     image: "mongo:latest"
     networks:
-      - cxk_net
+      - bilibili_net
     restart: always
     ports:
       - "27017:27017"
     volumes:
-      - cxk_data:/data/db
+      - bilibili_data:/data/db
 
 volumes:
-  cxk_data:
+  bilibili_data:
 networks:
-  cxk_net:
+  bilibili_net:
