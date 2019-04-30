@@ -1,6 +1,6 @@
 `used as test wechat back end`
 
-[api_base_address](http://guygubaby.top:8888) 
+### api
 
 1. `/crawl` 
 
@@ -12,7 +12,7 @@
     * page default 5
     
     eg
-    > `/crawl?page=5&name=蔡徐坤` [crawl5Page](http://guygubaby.top:8888/crawl?page=5&name=蔡徐坤)
+    * `/crawl?page=5&name=蔡徐坤` [crawl5Page](http://guygubaby.top:8888/crawl?page=5&name=蔡徐坤)
 
 2. `/get`
 
@@ -24,5 +24,11 @@
     * size default 10
     
     eg
-    > `/get?page=0&size=10`  [get50Video](http://guygubaby.top:8888/get?page=0&size=50)
+    * `/get?page=0&size=10`  [get50Video](http://guygubaby.top:8888/get?page=0&size=50)
     
+### deploy
+```
+git clone https://github.com/guygubaby/wechat_backend.git
+cd  wechat_backend
+docker-compose up -d
+``` 
