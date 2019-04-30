@@ -22,7 +22,11 @@ class CXK:
     def __init__(self,end_page=2):
         self.urls=[self.url_template.format(i) for i in range(1,end_page+1)]
 
+    def delete_previous(self):
+        self.cxk_db.delete_many({})
+
     def get_content(self):
+        self.delete_previous() # 删除之前的防止重复数据
         for url in self.urls:
             try:
                 res=self.session.get(url).text
@@ -65,4 +69,4 @@ def start_crawl(page=5):
 
 
 if __name__ == '__main__':
-    start_crawl(50)
+    start_crawl(1)
