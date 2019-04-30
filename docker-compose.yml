@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  service.app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8888:5000"
+    networks:
+      - cxk_net
+
+  service.db:
+    image: "mongo:latest"
+    networks:
+      - cxk_net
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - cxk_data:/data/db
+
+volumes:
+  cxk_data:
+networks:
+  cxk_net:
