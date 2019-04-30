@@ -2,7 +2,7 @@ from pymongo import MongoClient
 
 
 class BiliBiliVideoItem:
-    db = MongoClient(host='service.db', port=27017).my_db.cxk
+    db = MongoClient(host='service.db', port=27017).my_db.bilibili
     res = []
 
     def __init__(self,title,time,watch_count,last_time):

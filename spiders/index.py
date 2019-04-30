@@ -6,7 +6,7 @@ from pymongo import MongoClient
 
 class BiliBiliSpider:
     # ua=UserAgent(use_cache_server=False, verify_ssl=False)
-    cxk_db=MongoClient(host='service.db',port=27017).my_db.cxk
+    bilibili_db=MongoClient(host='service.db',port=27017).my_db.bilibili
     url_template='https://search.bilibili.com/all?keyword={}&page={}'
     headers={
         # 'User-Agent':ua.random,
@@ -23,7 +23,7 @@ class BiliBiliSpider:
         self.urls=[self.url_template.format(search_text,i) for i in range(1,end_page+1)]
 
     def delete_previous(self):
-        self.cxk_db.delete_many({})
+        self.bilibili_db.delete_many({})
 
     def get_content(self):
         # self.delete_previous() # 删除之前的防止重复数据
@@ -57,19 +57,19 @@ class BiliBiliSpider:
             if len(self.res)==0:
                 print('get no content ...')
                 return
-            self.cxk_db.insert_many(self.res)
+            self.bilibili_db.insert_many(self.res)
             self.res=[]
 
     def get_total_count(self):
-        count = self.cxk_db.find().count()
+        count = self.bilibili_db.find().count()
         return count
 
 
 def start_crawl(text='蔡徐坤',page=5):
-    cxk=BiliBiliSpider(search_text=text,end_page=page)
-    cxk.get_content()
-    return cxk.get_total_count()
+    spider=BiliBiliSpider(search_text=text,end_page=page)
+    spider.get_content()
+    return spider.get_total_count()
 
 
 if __name__ == '__main__':
-    start_crawl('guygubaby',2)
+    start_crawl()
