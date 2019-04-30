@@ -8,10 +8,11 @@
     * to get the latest video from bilibili 
     
     params
+    * name default 蔡徐坤
     * page default 5
     
     eg
-    > `/crawl?page=5` [crawl5Page](http://guygubaby.top:8888/crawl?page=5)
+    > `/crawl?page=5&name=蔡徐坤` [crawl5Page](http://guygubaby.top:8888/crawl?page=5&name=蔡徐坤)
 
 2. `/getCxk`
 

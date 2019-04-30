@@ -16,8 +16,9 @@ def hello_world():
 
 @app.route('/crawl',methods=['GET'])
 def crawl():
+    text = request.args.get('name',default='蔡徐坤',type=str)
     page = request.args.get('page',default=5,type=int)
-    count = start_crawl(page)
+    count = start_crawl(text,page)
     return jsonify({'count':count,'ret':'ok'})
 
 

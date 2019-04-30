@@ -7,7 +7,7 @@ from pymongo import MongoClient
 class CXK:
     # ua=UserAgent(use_cache_server=False, verify_ssl=False)
     cxk_db=MongoClient(host='service.db',port=27017).my_db.cxk
-    url_template='https://search.bilibili.com/all?keyword=蔡徐坤&page={}'
+    url_template='https://search.bilibili.com/all?keyword={}&page={}'
     headers={
         # 'User-Agent':ua.random,
         'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36',
@@ -19,14 +19,14 @@ class CXK:
 
     res=[]
 
-    def __init__(self,end_page=2):
-        self.urls=[self.url_template.format(i) for i in range(1,end_page+1)]
+    def __init__(self,search_text='蔡徐坤',end_page=2):
+        self.urls=[self.url_template.format(search_text,i) for i in range(1,end_page+1)]
 
     def delete_previous(self):
         self.cxk_db.delete_many({})
 
     def get_content(self):
-        self.delete_previous() # 删除之前的防止重复数据
+        # self.delete_previous() # 删除之前的防止重复数据
         for url in self.urls:
             try:
                 res=self.session.get(url).text
@@ -62,8 +62,8 @@ class CXK:
         return count
 
 
-def start_crawl(page=5):
-    cxk=CXK(page)
+def start_crawl(text='蔡徐坤',page=5):
+    cxk=CXK(search_text=text,end_page=page)
     cxk.get_content()
     return cxk.get_total_count()
 
