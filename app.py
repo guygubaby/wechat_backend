@@ -9,8 +9,8 @@ app.config['JSON_AS_ASCII'] = False
 @app.route('/')
 def help():
     return jsonify({'help':
-                        {'/crawl':'crawl videos,params: page:int and default is 5',
-                         '/get':'get video from db (ps: params: page and size,which default value is 0 and 10)'}
+                        {'/crawl':'crawl videos',
+                         '/get':'get video from db'}
                     })
 
 
