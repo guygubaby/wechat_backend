@@ -8,16 +8,20 @@ app.config['JSON_AS_ASCII'] = False
 
 @app.route('/')
 def hello_world():
-    return jsonify({'help':{'/crawl':'crawl cxk videos','/cxk':'get cxk from db (ps: params: page and size,which default value is 0 and 10)'}})
+    return jsonify({'help':
+                        {'/crawl':'crawl cxk videos,params: page:int and default is 5',
+                         '/getCxk':'get cxk from db (ps: params: page and size,which default value is 0 and 10)'}
+                    })
 
 
-@app.route('/crawl/<int:page>',methods=['GET'])
-def crawl(page=5):
+@app.route('/crawl',methods=['GET'])
+def crawl():
+    page = request.args.get('page',default=5,type=int)
     count = start_crawl(page)
     return jsonify({'count':count,'ret':'ok'})
 
 
-@app.route('/cxk',methods=['GET'])
+@app.route('/getCxk',methods=['GET'])
 def cxk():
     page=request.args.get('page',default=0,type=int)
     size=request.args.get('size',default=10,type=int)
