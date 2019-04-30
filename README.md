@@ -1,1 +1,1 @@
-`use as test wechat back end`
+`used as test wechat back end`
