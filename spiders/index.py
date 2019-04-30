@@ -4,9 +4,9 @@ from pymongo import MongoClient
 # from fake_useragent import UserAgent
 
 
-class CXK:
+class BiliBiliSpider:
     # ua=UserAgent(use_cache_server=False, verify_ssl=False)
-    cxk_db=MongoClient(host='service.db',port=27017).my_db.cxk
+    cxk_db=MongoClient(host='127.0.0.1',port=27017).my_db.cxk
     url_template='https://search.bilibili.com/all?keyword={}&page={}'
     headers={
         # 'User-Agent':ua.random,
@@ -54,6 +54,9 @@ class CXK:
                 print(url,e)
                 continue
             print('saving page of {} data into mongo ... '.format(url.split('page=')[1]))
+            if len(self.res)==0:
+                print('get no content ...')
+                return
             self.cxk_db.insert_many(self.res)
             self.res=[]
 
@@ -63,10 +66,10 @@ class CXK:
 
 
 def start_crawl(text='蔡徐坤',page=5):
-    cxk=CXK(search_text=text,end_page=page)
+    cxk=BiliBiliSpider(search_text=text,end_page=page)
     cxk.get_content()
     return cxk.get_total_count()
 
 
 if __name__ == '__main__':
-    start_crawl(1)
+    start_crawl('guygubaby',2)

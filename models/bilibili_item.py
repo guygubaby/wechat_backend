@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 
-class Cxk:
+class BiliBiliVideoItem:
     db = MongoClient(host='service.db', port=27017).my_db.cxk
     res = []
 
