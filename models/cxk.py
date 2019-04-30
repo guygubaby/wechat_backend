@@ -14,7 +14,7 @@ class Cxk:
     @classmethod
     def query_items(self,page=0,size=10):
         self.res=[]
-        count=self.db.find().count_documents()
+        count=self.db.find().count()
         res=self.db.find().limit(size).skip(page*size)
         for item in res:
             item.pop('_id')

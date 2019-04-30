@@ -6,7 +6,7 @@ from pymongo import MongoClient
 
 class CXK:
     # ua=UserAgent(use_cache_server=False, verify_ssl=False)
-    cxk_db=MongoClient(host='127.0.0.1',port=27017).my_db.cxk
+    cxk_db=MongoClient(host='service.db',port=27017).my_db.cxk
     url_template='https://search.bilibili.com/all?keyword=蔡徐坤&page={}'
     headers={
         # 'User-Agent':ua.random,
@@ -54,7 +54,7 @@ class CXK:
             self.res=[]
 
     def get_total_count(self):
-        count = self.cxk_db.find().count_documents()
+        count = self.cxk_db.find().count()
         return count
 
 
@@ -65,4 +65,4 @@ def start_crawl(page=5):
 
 
 if __name__ == '__main__':
-    start_crawl()
+    start_crawl(50)
